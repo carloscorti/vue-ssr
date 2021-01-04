@@ -12,9 +12,9 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(__dirname, "../", "public", "assets", "js"),
+    path: path.resolve(__dirname, "../", "public"),
     publicPath: "/",
-    filename: "[name].js",
+    filename: "assets/js/[name].js",
   },
 
   // module: {
