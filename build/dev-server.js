@@ -1,9 +1,9 @@
-const webpack = require("webpack");
-const clientConfig = require("./webpack.client.config");
+const webpack = require('webpack');
+const clientConfig = require('./webpack.client.config');
 
 const setupDevServer = (app) => {
   clientConfig.entry.app = [
-    "webpack-hot-middleware/client",
+    'webpack-hot-middleware/client',
     clientConfig.entry.app,
   ];
   clientConfig.plugins.push(
@@ -12,12 +12,12 @@ const setupDevServer = (app) => {
   );
   const clientCompiler = webpack(clientConfig);
   app.use(
-    require("webpack-dev-middleware")(clientCompiler, {
+    require('webpack-dev-middleware')(clientCompiler, {
       publicPath: clientConfig.output.publicPath,
     })
   );
 
-  app.use(require("webpack-hot-middleware")(clientCompiler));
+  app.use(require('webpack-hot-middleware')(clientCompiler));
 };
 
 module.exports = setupDevServer;

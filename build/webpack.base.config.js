@@ -1,37 +1,45 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "../", "src", "client-entry.js"),
+    app: path.resolve(__dirname, '../', 'src', 'client-entry.js'),
   },
 
   resolve: {
     alias: {
-      vue: "vue/dist/vue.js",
+      vue: 'vue/dist/vue.js',
     },
   },
 
   output: {
-    path: path.resolve(__dirname, "../", "public"),
-    publicPath: "/",
-    filename: "assets/js/[name].js",
+    path: path.resolve(__dirname, '../', 'public'),
+    publicPath: '/',
+    filename: 'assets/js/[name].js',
   },
 
   // module: {
   //   rules: [
-  //     {
-  //       test: /\.(sass|scss|css)$/,
-  //       // use: [MiniCssExtraxtPlugin.loader, 'css-loader', 'sass-loader'], // in case we use sass
-  //       use: [MiniCssExtraxtPlugin.loader, "css-loader"],
-  //     },
-  //     {
-  //       test: /\.js$/,
-  //       exclude: /node_modules/,
-  //       loader: "babel-loader",
-  //       options: {
-  //         plugins: ["@babel/transform-runtime"],
-  //       },
-  //     },
+  // to enforce compile without linting errors
+  // {
+  //   enforce: 'pre',
+  //   test: /\.js$/,
+  //   loader: 'eslint-loader',
+  //   exclude: /node_modules/,
+  // },
+
+  // {
+  //   test: /\.(sass|scss|css)$/,
+  //   // use: [MiniCssExtraxtPlugin.loader, 'css-loader', 'sass-loader'], // in case we use sass
+  //   use: [MiniCssExtraxtPlugin.loader, "css-loader"],
+  // },
+  // {
+  //   test: /\.js$/,
+  //   exclude: /node_modules/,
+  //   loader: "babel-loader",
+  //   options: {
+  //     plugins: ["@babel/transform-runtime"],
+  //   },
+  // },
   //   ],
   // },
 
