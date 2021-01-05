@@ -1,18 +1,19 @@
 module.exports = {
+  parser: 'babel-eslint',
   root: true,
   env: {
     browser: true,
     commonjs: true,
     es6: true,
-    node: true,
+    node: true
     // jest: true,
   },
   parserOptions: {
     ecmaVersion: 2020,
     ecmaFeatures: {
-      impliedStrict: true,
+      impliedStrict: true
     },
-    sourceType: 'module',
+    sourceType: 'module'
   },
   extends: 'standard',
   plugins: ['html'],
@@ -27,7 +28,7 @@ module.exports = {
     semi: ['error', 'always'],
     'no-console': [
       'warn',
-      { allow: ['clear', 'info', 'error', 'dir', 'trace'] },
+      { allow: ['clear', 'info', 'error', 'dir', 'trace'] }
     ],
     curly: 'error',
     'no-else-return': 'error',
@@ -38,6 +39,6 @@ module.exports = {
     'prefer-arrow-callback': 'error',
     strict: 'error',
     'symbol-description': 'error',
-    yoda: ['error', 'never', { exceptRange: true }],
-  },
+    yoda: ['error', 'never', { exceptRange: true }]
+  }
 };

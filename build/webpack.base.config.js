@@ -23,6 +23,14 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader'
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+        // options: {
+        //   plugins: ['@babel/transform-runtime']
+        // }
       }
       // to enforce compile without linting errors
       // {
@@ -36,13 +44,6 @@ module.exports = {
       //   // use: [MiniCssExtraxtPlugin.loader, 'css-loader', 'sass-loader'], // in case we use sass
       //   use: [MiniCssExtraxtPlugin.loader, "css-loader"],
       // },
-      // {
-      //   test: /\.js$/,
-      //   exclude: /node_modules/,
-      //   loader: "babel-loader",
-      //   options: {
-      //     plugins: ["@babel/transform-runtime"],
-      //   },
       // },
     ]
   },
