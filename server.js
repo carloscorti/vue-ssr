@@ -1,10 +1,10 @@
-const express = require("express");
-const path = require("path");
-const fs = require("fs");
-const devServer = require("./build/dev-server");
+const express = require('express');
+// const path = require('path');
+// const fs = require('fs');
+const devServer = require('./build/dev-server');
 
 const config = {
-  port: process.env.PORT || 3000,
+  port: process.env.PORT || 3000
 };
 
 const app = express();
@@ -14,12 +14,12 @@ const app = express();
 //   "utf-8"
 // );
 
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 devServer(app);
 
-app.get("*", (req, res) => {
-  res.send("index.html");
+app.get('*', (req, res) => {
+  res.send('index.html');
   // res.write(indexHTML);
   // res.end();
 });
