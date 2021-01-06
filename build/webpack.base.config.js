@@ -67,24 +67,13 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
 
-    //   // for assets.json list on public folder
-    // new AssetsPlugin({
-    //   filename: 'assets.json',
-    //   path: path.resolve(__dirname, '../', 'template', 'assets'),
-    //   prettyPrint: true
-    // }),
-    // to clean public/build folder each time webpack outputs files
-    // new CleanWebpackPlugin({
-    //   cleanOnceBeforeBuildPatterns: [
-    //     path.resolve(__dirname, '../', 'public', 'assets')
-    //   ]
-    // }),
     new CleanWebpackPlugin(),
+
     new MiniCssExtraxtPlugin({
       filename: 'assets/css/[name].[contenthash].css'
     }),
+
     new HtmlWebpackPlugin({
-      title: 'html',
       template: path.resolve(__dirname, '../', 'template', 'index.html'),
       filename: path.resolve(__dirname, '../', 'public', 'index.html'),
       inject: true,

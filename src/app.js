@@ -1,11 +1,14 @@
 import Vue from 'vue';
 import AppLayout from './theme/AppLayout.vue';
-// import './style/index.scss';
 import 'bulma';
+
+// Vue.config.productionTip = false;
+
+Vue.config.devtools = true;
 
 const app = new Vue({
   // render: (h) => h(AppLayout),
-  ...AppLayout
+  ...AppLayout,
 });
 
 export { app };
