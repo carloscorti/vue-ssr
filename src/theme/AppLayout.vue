@@ -1,13 +1,32 @@
 <template>
-  <div>
-    <nav class="nav has-shadow">
+  <div id="app">
+    <nav class="navbar has-shadow">
       <div class="container">
         <a href="/">
           <img src="http://bit.ly/vue-img" alt="Vue SPA" />
         </a>
       </div>
     </nav>
-    <section class="main-section section"></section>
+    <section class="main-section section">
+      <div class="container content">
+        <div class="columns">
+          <div class="column is-one-third" v-for="post in posts" :key="post.id">
+            <div class="card">
+              <div class="card-content">
+                <h3>{{ post.title }}</h3>
+                {{ post.content }}
+              </div>
+              <footer class="card-footer">
+                <a class="card-footer-item" :href="post.link" target="_blank"
+                  >Read More</a
+                >
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <footer class="footer">
       <div class="container">
         <div class="content has-text-centered">
@@ -76,3 +95,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.columns {
+  flex-wrap: wrap;
+}
+</style>
