@@ -18,7 +18,14 @@ export default {
   props: {
     post: {
       type: Object,
-      default: () => {}
+      validator: prop => {
+        return Object.entries(prop).every(value => {
+          if (value[0] === 'id') {
+            return typeof value[1] === 'number';
+          }
+          return typeof value[1] === 'string';
+        });
+      }
     }
   }
 };
