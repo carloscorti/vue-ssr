@@ -17,11 +17,11 @@ module.exports = {
     filename: 'assets/js/[name].[contenthash].js'
   },
 
-  // resolve: {
-  //   alias: {
-  //     '@/*': '../src'
-  //   }
-  // },
+  resolve: {
+    alias: {
+      '@_': path.resolve(__dirname, '../', 'src')
+    }
+  },
 
   module: {
     rules: [
