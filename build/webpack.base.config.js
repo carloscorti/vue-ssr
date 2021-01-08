@@ -6,7 +6,14 @@ const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+let executionMode = 'production';
+if (process.argv[2] && process.argv[2] === 'development') {
+  executionMode = process.argv[2];
+}
+
 module.exports = {
+  mode: executionMode,
+
   entry: {
     app: path.resolve(__dirname, '../', 'src', 'client-entry.js')
   },

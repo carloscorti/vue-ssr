@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "prestart": "webpack --config ./build/webpack.base.config.js",
+    "start": "node server.js",
+    "dev": "set NODE_ENV=development&& node server.js development"
   },
   "keywords": [],
   "author": "",

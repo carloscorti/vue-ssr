@@ -1,7 +1,6 @@
 const express = require('express');
 // const path = require('path');
 // const fs = require('fs');
-const devServer = require('./build/dev-server');
 
 const config = {
   port: process.env.PORT || 3000
@@ -16,7 +15,9 @@ const app = express();
 
 app.use(express.static('public'));
 
-devServer(app);
+if (process.env.NODE_ENV === 'development') {
+  require('./build/dev-server')(app);
+}
 
 app.get('*', (req, res) => {
   res.send('index.html');
