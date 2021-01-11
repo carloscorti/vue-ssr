@@ -67,9 +67,9 @@ export default {
   components: {
     'post-card': PostCard
   },
-  created() {
-    console.log(process.env.NODE_ENV);
-  },
+  // created() {
+  //   console.log(process.env.NODE_ENV);
+  // },
   data() {
     return {
       posts
