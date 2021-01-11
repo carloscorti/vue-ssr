@@ -14,13 +14,17 @@ const routes = [
       import(/* webpackChunkName: "bundle.login" */ '@_/theme/Login.vue')
   },
   {
-    path: '/',
+    path: '/category/front-end',
     name: 'post-list',
     // component: () =>
     //   import(
     //     /* webpackChunkName: "bundle.posts-list" */ '@_/theme/PostList.vue'
     //   )
     component: PostList
+  },
+  {
+    path: '/',
+    redirect: '/category/front-end'
   },
   {
     path: '*',

@@ -4,7 +4,9 @@
       <router-link :to="{ name: 'post-list' }"
         ><img :src="imgSrc" alt="Vue SPA"
       /></router-link>
-      <router-link to="/" class="navbar-item is-tab" exact>Home</router-link>
+      <router-link to="/category/front-end" class="navbar-item is-tab" exact
+        >Home</router-link
+      >
       <router-link to="/login" class="navbar-item is-tab" exact
         >Login</router-link
       >
