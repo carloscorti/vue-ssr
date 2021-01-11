@@ -6,7 +6,13 @@ import PostList from '@_/theme/PostList.vue';
 
 Vue.use(VueRouter);
 
+const parseId = router => ({ id: router.params.id });
+
 const routes = [
+  {
+    path: '/',
+    redirect: '/category/front-end'
+  },
   {
     path: '/login',
     name: 'login',
@@ -14,17 +20,10 @@ const routes = [
       import(/* webpackChunkName: "bundle.login" */ '@_/theme/Login.vue')
   },
   {
-    path: '/category/front-end',
+    path: '/category/:id',
     name: 'post-list',
-    // component: () =>
-    //   import(
-    //     /* webpackChunkName: "bundle.posts-list" */ '@_/theme/PostList.vue'
-    //   )
+    props: parseId,
     component: PostList
-  },
-  {
-    path: '/',
-    redirect: '/category/front-end'
   },
   {
     path: '*',

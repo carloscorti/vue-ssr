@@ -1,11 +1,14 @@
 <template>
   <nav class="navbar has-shadow">
     <div class="container">
-      <router-link :to="{ name: 'post-list' }"
+      <router-link :to="{ path: '/' }"
         ><img :src="imgSrc" alt="Vue SPA"
       /></router-link>
       <router-link to="/category/front-end" class="navbar-item is-tab" exact
-        >Home</router-link
+        >Front-End</router-link
+      >
+      <router-link to="/category/movile" class="navbar-item is-tab" exact
+        >Movile</router-link
       >
       <router-link to="/login" class="navbar-item is-tab" exact
         >Login</router-link

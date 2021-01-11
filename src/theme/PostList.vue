@@ -16,7 +16,7 @@
 <script>
 import PostCard from '@_/theme/PostCard.vue';
 
-const posts = [
+const postsFrontEnd = [
   {
     id: 1,
     title: 'PWA Stats',
@@ -38,7 +38,9 @@ const posts = [
       'Why now is the perfect time to learn what exactly this GraphQL thing you keep hearing about really is.',
     link:
       'https://medium.freecodecamp.com/so-whats-this-graphql-thing-i-keep-hearing-about-baf4d36c20cf'
-  },
+  }
+];
+const postsMovile = [
   {
     id: 4,
     title: 'State of The Mobile Gap Between Native and Web',
@@ -61,19 +63,50 @@ const posts = [
     link: 'https://css-tricks.com/power-custom-directives-vue/'
   }
 ];
+const errorPost = [
+  {
+    id: 0,
+    title: "Opss can't recognize that",
+    content: 'Please select one tag from nav bar',
+    link: '/#'
+  }
+];
 
 export default {
   name: 'PostList',
   components: {
     'post-card': PostCard
   },
-  // created() {
-  //   console.log(process.env.BASE_URL);
-  // },
+  props: {
+    id: {
+      type: String,
+      validator: prop => {
+        return ['movile', 'front-end'].includes(prop);
+      }
+    }
+  },
   data() {
     return {
-      posts
+      postsFrontEnd,
+      postsMovile
     };
+  },
+  computed: {
+    posts() {
+      switch (this.id) {
+        case 'movile':
+          return postsMovile;
+        case 'front-end':
+          return postsFrontEnd;
+        default:
+          return errorPost;
+      }
+    }
+  },
+  watch: {
+    id(newValue, oldValue) {
+      console.log(`id prop has change::  from: ${oldValue} --> to:${newValue}`);
+    }
   }
 };
 </script>

@@ -21,7 +21,7 @@ export default {
       validator: prop => {
         return Object.entries(prop).every(value => {
           if (value[0] === 'id') {
-            return typeof value[1] === 'number';
+            return typeof value[1] === 'number' && value[1] >= 0;
           }
           return typeof value[1] === 'string';
         });
