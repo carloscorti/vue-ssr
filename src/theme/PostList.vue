@@ -68,7 +68,7 @@ export default {
     'post-card': PostCard
   },
   // created() {
-  //   console.log(process.env.NODE_ENV);
+  //   console.log(process.env.BASE_URL);
   // },
   data() {
     return {
