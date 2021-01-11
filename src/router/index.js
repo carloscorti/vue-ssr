@@ -8,6 +8,12 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/login',
+    name: 'login',
+    component: () =>
+      import(/* webpackChunkName: "bundle.login" */ '@_/theme/Login.vue')
+  },
+  {
     path: '/',
     name: 'post-list',
     // component: () =>
@@ -31,6 +37,7 @@ const router = new VueRouter({
   mode: 'history',
   hash: false,
   // base: process.env.BASE_URL,
+  base: '/',
   routes
 });
 

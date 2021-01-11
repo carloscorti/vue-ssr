@@ -15,9 +15,10 @@ const indexHTML = fs.readFileSync(
 
 app.use(express.static('public'));
 
-// if (process.env.NODE_ENV === 'development') {
-//   require('./build/dev-server')(app);
-// }
+if (process.env.NODE_ENV === 'development') {
+  // require('./build/dev-server')(app);
+  console.info(`Running on ${process.env.NODE_ENV} mode`);
+}
 
 app.get('/*', (req, res) => {
   // res.send('index.html');
@@ -30,5 +31,9 @@ app.use((req, res, next) => {
 });
 
 app.listen(config.port, () => {
-  console.info(`Running on port ${config.port}...`);
+  const runAdrres =
+    process.env.NODE_ENV === 'development'
+      ? `http://localhost:${config.port}`
+      : `port ${config.port}...`;
+  console.info(`Running on ${runAdrres}`);
 });
