@@ -2,6 +2,16 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://api.fullstackweekly.com/';
 
+axios.interceptors.request.use(config => {
+  if (window && window.localStorage.getItem('token')) {
+    config.headers = {
+      Authorization: `Bearer ${window.localStorage.getItem('token')}`
+    };
+    return config;
+  }
+  return config;
+});
+
 const getPosts = async categoryId => {
   try {
     const resp = await axios.get(
@@ -21,6 +31,20 @@ const getPosts = async categoryId => {
   }
 };
 
+const getProfile = async () => {
+  try {
+    const resp = await axios.get('/services/profile.php', {
+      // headers: {
+      //   Authorization: `Bearer ${window.localStorage.getItem('token')}`
+      // }
+    });
+    return resp.data;
+  } catch (error) {
+    console.error(`ERROR HERE:: ${error.message}`);
+    return error.status;
+  }
+};
+
 const login = async credentials => {
   try {
     const resp = await axios.post('/services/auth.php', credentials);
@@ -31,4 +55,4 @@ const login = async credentials => {
   }
 };
 
-export { getPosts, login };
+export { getPosts, login, getProfile };

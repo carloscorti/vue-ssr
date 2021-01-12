@@ -10,10 +10,10 @@
         query: { page: pageBack() }
       }"
     >
-      <button>Page Back</button>
+      <button class="button is-primary">Page Back</button>
     </router-link>
     <router-link :to="{ path: `/category/${id}`, query: { page: pageUp() } }">
-      <button>Page Up</button>
+      <button class="button is-primary">Page Up</button>
     </router-link>
     <div class="container content">
       <div class="columns">
