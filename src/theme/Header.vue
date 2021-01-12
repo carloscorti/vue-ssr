@@ -4,15 +4,15 @@
       <router-link :to="{ path: '/' }"
         ><img :src="imgSrc" alt="Vue SPA"
       /></router-link>
-      <router-link to="/category/front-end" class="navbar-item is-tab" exact
+      <router-link to="/category/front-end" class="navbar-item is-tab"
         >Front-End</router-link
       >
-      <router-link to="/category/movile" class="navbar-item is-tab" exact
+      <router-link
+        :to="{ name: 'post-list', params: { id: 'movile' } }"
+        class="navbar-item is-tab"
         >Movile</router-link
       >
-      <router-link to="/login" class="navbar-item is-tab" exact
-        >Login</router-link
-      >
+      <router-link to="/login" class="navbar-item is-tab">Login</router-link>
     </div>
   </nav>
 </template>

@@ -6,7 +6,16 @@ import PostList from '@_/theme/PostList.vue';
 
 Vue.use(VueRouter);
 
-const parseId = router => ({ id: router.params.id });
+const parseId = router => {
+  let page = 0;
+  if (router.query.page) {
+    page = parseInt(router.query.page);
+  }
+  return {
+    id: router.params.id,
+    page
+  };
+};
 
 const routes = [
   {
