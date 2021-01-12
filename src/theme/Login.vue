@@ -8,7 +8,12 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="text" placeholder="Your username" />
+            <input
+              v-model="username"
+              class="input"
+              type="text"
+              placeholder="Your username"
+            />
           </div>
         </div>
       </div>
@@ -20,7 +25,12 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <input class="input" type="password" placeholder="Your password" />
+            <input
+              v-model="password"
+              class="input"
+              type="password"
+              placeholder="Your password"
+            />
           </div>
         </div>
       </div>
@@ -32,7 +42,7 @@
       <div class="field-body">
         <div class="field">
           <div class="control">
-            <button class="button is-primary">
+            <button @click="login()" class="button is-primary">
               Login
             </button>
           </div>
@@ -43,7 +53,29 @@
 </template>
 
 <script>
+import * as networkService from '@_/network';
 export default {
-  name: 'Login'
+  name: 'Login',
+  data() {
+    return {
+      username: '',
+      password: ''
+    };
+  },
+  methods: {
+    async login() {
+      try {
+        const authResponse = await networkService.login({
+          username: this.username, //bill
+          password: this.password //vuejs
+        });
+        window.localStorage.setItem('token', authResponse.token);
+        window.localStorage.setItem('tokenExpiration', authResponse.expiration);
+      } catch (error) {
+        console.error(`ERROR HERE:: ${error.message}`);
+        window.alert("Couldn't login");
+      }
+    }
+  }
 };
 </script>

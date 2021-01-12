@@ -83,8 +83,8 @@ const errorPost = [
   {
     id: 0,
     title: { rendered: "Opss can't recognize that" },
-    content: 'Please select one tag from nav bar',
-    link: '/#'
+    content: { rendered: 'Please select one tag from nav bar' },
+    rest_api_enabler: { Link: '/#' }
   }
 ];
 
