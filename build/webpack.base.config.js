@@ -60,10 +60,10 @@ module.exports = (env, argv) => {
         {
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel-loader'
-          // options: {
-          //   plugins: ['@babel/transform-runtime']
-          // }
+          loader: 'babel-loader',
+          options: {
+            plugins: ['@babel/transform-runtime']
+          }
         }
         // to enforce compile without linting errors
         // {
