@@ -1,8 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-// import PageNotFound from '@_/theme/page-not-found.vue';
 import PostList from '@_/theme/PostList.vue';
+const PageNotFound = () =>
+  import(
+    /* webpackChunkName: "bundle.page-not-found" */ '@_/theme/page-not-found.vue'
+  );
 
 Vue.use(VueRouter);
 
@@ -37,11 +40,7 @@ const routes = [
   {
     path: '*',
     name: 'page-not-found',
-    // component: PageNotFound
-    component: () =>
-      import(
-        /* webpackChunkName: "bundle.page-not-found" */ '@_/theme/page-not-found.vue'
-      )
+    component: PageNotFound
   }
 ];
 
