@@ -62,6 +62,8 @@
 
 <script>
 import * as networkService from '@_/network';
+import eventBus from '@_/event.bus';
+
 export default {
   name: 'Login',
   data() {
@@ -110,6 +112,7 @@ export default {
       } else {
         this.profile = {};
       }
+      eventBus.$emit('authenticationUpdate', newValue);
     }
   }
 };
