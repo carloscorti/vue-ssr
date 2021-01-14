@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 import Header from '@_/theme/Header.vue';
 import Footer from '@_/theme/Footer.vue';
 
@@ -17,6 +19,18 @@ export default {
   components: {
     'app-header': Header,
     'app-footer': Footer
+  },
+  methods: {
+    ...mapActions(['setIsAuthenticatedAction'])
+  },
+  created() {
+    let authenticationValue = false;
+    const expiration = window.localStorage.getItem('tokenExpiration');
+    const timeNow = new Date().getTime() / 1000;
+    if (expiration !== null && parseInt(expiration) - timeNow > 0) {
+      authenticationValue = true;
+    }
+    this.setIsAuthenticatedAction(authenticationValue);
   }
 };
 </script>

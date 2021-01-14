@@ -62,7 +62,8 @@
 
 <script>
 import * as networkService from '@_/network';
-import eventBus from '@_/event.bus';
+// import eventBus from '@_/event.bus';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'Login',
@@ -70,18 +71,11 @@ export default {
     return {
       username: '',
       password: '',
-      isAuthenticated: false,
       profile: {}
     };
   },
-  created() {
-    let expiration = window.localStorage.getItem('tokenExpiration');
-    const timeNow = new Date().getTime() / 1000;
-    if (expiration !== null && parseInt(expiration) - timeNow > 0) {
-      this.isAuthenticated = true;
-    }
-  },
   methods: {
+    ...mapActions(['setIsAuthenticatedAction']),
     async login() {
       try {
         const authResponse = await networkService.login({
@@ -90,7 +84,7 @@ export default {
         });
         window.localStorage.setItem('token', authResponse.token);
         window.localStorage.setItem('tokenExpiration', authResponse.expiration);
-        this.isAuthenticated = true;
+        this.setIsAuthenticatedAction(true);
       } catch (error) {
         console.error(`ERROR HERE:: ${error.message}`);
         window.alert("Couldn't login");
@@ -102,8 +96,25 @@ export default {
       window.localStorage.removeItem('tokenExpiration');
       this.username = '';
       this.password = '';
-      this.isAuthenticated = false;
+      // this.isAuthenticated = false;
+      this.setIsAuthenticatedAction(false);
     }
+  },
+  async created() {
+    if (this.isAuthenticated) {
+      this.profile = await networkService.getProfile();
+    } else {
+      this.profile = {};
+    }
+    //   let expiration = window.localStorage.getItem('tokenExpiration');
+    //   const timeNow = new Date().getTime() / 1000;
+    //   if (expiration !== null && parseInt(expiration) - timeNow > 0) {
+    //     // this.isAuthenticated = true;
+    //     this.setIsAuthenticated(true);
+    //   }
+  },
+  computed: {
+    ...mapState(['isAuthenticated'])
   },
   watch: {
     async isAuthenticated(newValue, oldValue) {
@@ -112,7 +123,8 @@ export default {
       } else {
         this.profile = {};
       }
-      eventBus.$emit('authenticationUpdate', newValue);
+      // eventBus.$emit('authenticationUpdate', newValue);
+      // this.setIsAuthenticated(newValue);
     }
   }
 };

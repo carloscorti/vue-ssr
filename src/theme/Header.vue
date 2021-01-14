@@ -13,7 +13,7 @@
         >Movile</router-link
       >
       <router-link to="/login" class="navbar-item is-tab">
-        <span v-if="isAuthenticatedHeader">Logout</span>
+        <span v-if="isAuthenticated">Logout</span>
         <span v-else>Login</span>
       </router-link>
     </div>
@@ -21,21 +21,29 @@
 </template>
 
 <script>
-import eventBus from '@_/event.bus';
+// import eventBus from '@_/event.bus';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Header',
 
   data() {
     return {
-      imgSrc: 'http://bit.ly/vue-img',
-      isAuthenticatedHeader: false
+      imgSrc: 'http://bit.ly/vue-img'
+      // isAuthenticatedHeader: false
     };
   },
-  created() {
-    eventBus.$on('authenticationUpdate', isAuthenticatedUpdate => {
-      this.isAuthenticatedHeader = isAuthenticatedUpdate;
-    });
+  computed: {
+    ...mapState(['isAuthenticated'])
+
+    // isAuthenticatedHeader() {
+    //   return this.isAuthenticated;
+    // }
   }
+  // created() {
+  //   eventBus.$on('authenticationUpdate', isAuthenticatedUpdate => {
+  //     this.isAuthenticatedHeader = isAuthenticatedUpdate;
+  //   });
+  // }
 };
 </script>

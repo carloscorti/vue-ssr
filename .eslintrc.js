@@ -39,6 +39,7 @@ module.exports = {
     'prefer-arrow-callback': 'error',
     strict: 'error',
     'symbol-description': 'error',
-    yoda: ['error', 'never', { exceptRange: true }]
+    yoda: ['error', 'never', { exceptRange: true }],
+    'space-before-function-paren': false
   }
 };
