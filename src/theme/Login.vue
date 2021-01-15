@@ -62,58 +62,34 @@
 
 <script>
 import * as networkService from '@_/network';
-// import eventBus from '@_/event.bus';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Login',
+
   data() {
     return {
       username: '',
-      password: '',
-      profile: {}
+      password: ''
     };
   },
+
   methods: {
-    ...mapActions(['setIsAuthenticatedAction', 'loginAction']),
+    ...mapActions(['setIsAuthenticatedAction', 'loginAction', 'logoutAction']),
     async login() {
-      try {
-        await this.loginAction({
-          username: this.username, //bill
-          password: this.password //vuejs
-        });
-        this.setIsAuthenticatedAction(true);
-      } catch (error) {
-        consol.error(error);
-      }
+      await this.loginAction({
+        username: this.username, //bill
+        password: this.password //vuejs
+      });
     },
 
     logout() {
-      window.localStorage.removeItem('token');
-      window.localStorage.removeItem('tokenExpiration');
-      this.username = '';
-      this.password = '';
-      this.setIsAuthenticatedAction(false);
+      this.logoutAction();
     }
   },
-  async created() {
-    if (this.isAuthenticated) {
-      this.profile = await networkService.getProfile();
-    } else {
-      this.profile = {};
-    }
-  },
+
   computed: {
-    ...mapGetters(['isAuthenticated'])
-  },
-  watch: {
-    async isAuthenticated(newValue, oldValue) {
-      if (newValue) {
-        this.profile = await networkService.getProfile();
-      } else {
-        this.profile = {};
-      }
-    }
+    ...mapGetters(['isAuthenticated', 'profile'])
   }
 };
 </script>

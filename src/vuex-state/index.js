@@ -7,11 +7,13 @@ import actions from './actions';
 Vue.use(Vuex);
 
 const state = {
-  isAuthenticated: false
+  isAuthenticated: false,
+  profile: {}
 };
 
 const getters = {
-  isAuthenticated: state => state.isAuthenticated
+  isAuthenticated: state => state.isAuthenticated,
+  profile: state => state.profile
 };
 
 export default new Vuex.Store({

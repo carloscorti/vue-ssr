@@ -30,6 +30,7 @@ export default {
       const timeNow = new Date().getTime() / 1000;
       if (expiration !== null && parseInt(expiration) - timeNow > 0) {
         authenticationValue = true;
+        this.setProfileAction(); //no async await to first setAuthentication status
       }
       this.setIsAuthenticatedAction(authenticationValue);
     }

@@ -6,6 +6,11 @@ const actions = {
     commit(types.SET_IS_AUTHENTICATED, isUserAuthenticated);
   },
 
+  async setProfileAction({ commit }) {
+    const profile = await networkService.getProfile();
+    commit(types.GET_PROFILE, profile);
+  },
+
   async loginAction({ dispatch }, credentials) {
     const { username, password } = credentials;
     try {
@@ -15,12 +20,22 @@ const actions = {
         window.localStorage.setItem('tokenExpiration', authResponse.expiration);
       }
       dispatch('setIsAuthenticatedAction', true);
+      dispatch('setProfileAction');
     } catch (error) {
       console.error(`ERROR HERE:: ${error.message}`);
       if (window) {
         window.alert("Couldn't login");
       }
     }
+  },
+
+  logoutAction({ commit, dispatch }) {
+    if (window) {
+      window.localStorage.removeItem('token');
+      window.localStorage.removeItem('tokenExpiration');
+    }
+    dispatch('setIsAuthenticatedAction', false);
+    commit(types.CLEAN_PROFILE);
   }
 };
 
