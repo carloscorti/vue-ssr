@@ -12,6 +12,7 @@ const state = {
 };
 
 const getters = {
+  isAuthenticated: state => state.isAuthenticated
   // getHeroById: state => id => state.heroes.find(hero => hero.id === id)
 };
 

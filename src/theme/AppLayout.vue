@@ -24,13 +24,15 @@ export default {
     ...mapActions(['setIsAuthenticatedAction'])
   },
   created() {
-    let authenticationValue = false;
-    const expiration = window.localStorage.getItem('tokenExpiration');
-    const timeNow = new Date().getTime() / 1000;
-    if (expiration !== null && parseInt(expiration) - timeNow > 0) {
-      authenticationValue = true;
+    if (window) {
+      let authenticationValue = false;
+      const expiration = window.localStorage.getItem('tokenExpiration');
+      const timeNow = new Date().getTime() / 1000;
+      if (expiration !== null && parseInt(expiration) - timeNow > 0) {
+        authenticationValue = true;
+      }
+      this.setIsAuthenticatedAction(authenticationValue);
     }
-    this.setIsAuthenticatedAction(authenticationValue);
   }
 };
 </script>

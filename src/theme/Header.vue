@@ -22,7 +22,8 @@
 
 <script>
 // import eventBus from '@_/event.bus';
-import { mapState } from 'vuex';
+// import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Header',
@@ -30,15 +31,11 @@ export default {
   data() {
     return {
       imgSrc: 'http://bit.ly/vue-img'
-      // isAuthenticatedHeader: false
     };
   },
   computed: {
-    ...mapState(['isAuthenticated'])
-
-    // isAuthenticatedHeader() {
-    //   return this.isAuthenticated;
-    // }
+    // ...mapState(['isAuthenticated'])
+    ...mapGetters(['isAuthenticated'])
   }
   // created() {
   //   eventBus.$on('authenticationUpdate', isAuthenticatedUpdate => {

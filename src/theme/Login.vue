@@ -63,7 +63,7 @@
 <script>
 import * as networkService from '@_/network';
 // import eventBus from '@_/event.bus';
-import { mapState, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Login',
@@ -96,7 +96,6 @@ export default {
       window.localStorage.removeItem('tokenExpiration');
       this.username = '';
       this.password = '';
-      // this.isAuthenticated = false;
       this.setIsAuthenticatedAction(false);
     }
   },
@@ -106,15 +105,9 @@ export default {
     } else {
       this.profile = {};
     }
-    //   let expiration = window.localStorage.getItem('tokenExpiration');
-    //   const timeNow = new Date().getTime() / 1000;
-    //   if (expiration !== null && parseInt(expiration) - timeNow > 0) {
-    //     // this.isAuthenticated = true;
-    //     this.setIsAuthenticated(true);
-    //   }
   },
   computed: {
-    ...mapState(['isAuthenticated'])
+    ...mapGetters(['isAuthenticated'])
   },
   watch: {
     async isAuthenticated(newValue, oldValue) {
