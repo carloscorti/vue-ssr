@@ -7,13 +7,11 @@ import actions from './actions';
 Vue.use(Vuex);
 
 const state = {
-  // heroes: []
   isAuthenticated: false
 };
 
 const getters = {
   isAuthenticated: state => state.isAuthenticated
-  // getHeroById: state => id => state.heroes.find(hero => hero.id === id)
 };
 
 export default new Vuex.Store({

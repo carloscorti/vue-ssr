@@ -75,19 +75,16 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['setIsAuthenticatedAction']),
+    ...mapActions(['setIsAuthenticatedAction', 'loginAction']),
     async login() {
       try {
-        const authResponse = await networkService.login({
+        await this.loginAction({
           username: this.username, //bill
           password: this.password //vuejs
         });
-        window.localStorage.setItem('token', authResponse.token);
-        window.localStorage.setItem('tokenExpiration', authResponse.expiration);
         this.setIsAuthenticatedAction(true);
       } catch (error) {
-        console.error(`ERROR HERE:: ${error.message}`);
-        window.alert("Couldn't login");
+        consol.error(error);
       }
     },
 
@@ -116,8 +113,6 @@ export default {
       } else {
         this.profile = {};
       }
-      // eventBus.$emit('authenticationUpdate', newValue);
-      // this.setIsAuthenticated(newValue);
     }
   }
 };

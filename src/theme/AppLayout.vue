@@ -21,7 +21,7 @@ export default {
     'app-footer': Footer
   },
   methods: {
-    ...mapActions(['setIsAuthenticatedAction'])
+    ...mapActions(['setIsAuthenticatedAction', 'setProfileAction'])
   },
   created() {
     if (window) {

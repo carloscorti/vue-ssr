@@ -21,8 +21,6 @@
 </template>
 
 <script>
-// import eventBus from '@_/event.bus';
-// import { mapState } from 'vuex';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -34,13 +32,7 @@ export default {
     };
   },
   computed: {
-    // ...mapState(['isAuthenticated'])
     ...mapGetters(['isAuthenticated'])
   }
-  // created() {
-  //   eventBus.$on('authenticationUpdate', isAuthenticatedUpdate => {
-  //     this.isAuthenticatedHeader = isAuthenticatedUpdate;
-  //   });
-  // }
 };
 </script>
