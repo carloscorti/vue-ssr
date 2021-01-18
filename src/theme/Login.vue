@@ -81,6 +81,8 @@ export default {
         username: this.username, //bill
         password: this.password //vuejs
       });
+      this.username = '';
+      this.password = '';
     },
 
     logout() {

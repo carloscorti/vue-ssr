@@ -4,6 +4,8 @@ import Vuex from 'vuex';
 import mutations from './mutations';
 import actions from './actions';
 
+import postsModule from './modules/posts';
+
 Vue.use(Vuex);
 
 const state = {
@@ -18,6 +20,7 @@ const getters = {
 
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
+  modules: { postsModule },
   state,
   mutations,
   actions,
