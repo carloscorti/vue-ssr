@@ -3,6 +3,7 @@ node_modules
 /dist
 db.json
 public
+ssr/
 
 
 # local env files

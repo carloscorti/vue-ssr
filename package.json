@@ -8,6 +8,7 @@
     "prestart": "webpack --config ./build/webpack.base.config.js --mode=production",
     "start": "node server.js",
     "dev-webpack": "webpack --config ./build/webpack.base.config.js --watch --mode=development",
+    "dev-webpack-ssr": "webpack --config ./build/webpack.ssr.config.js --watch --mode=development",
     "dev": "set NODE_ENV=development&& nodemon server.js"
   },
   "keywords": [],
