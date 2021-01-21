@@ -2,7 +2,7 @@ import Vue from 'vue';
 import AppLayout from './theme/AppLayout.vue';
 import router from './router';
 import store from './vuex-state';
-import 'bulma';
+import './styles/index.scss';
 
 // Vue.config.productionTip = false;
 

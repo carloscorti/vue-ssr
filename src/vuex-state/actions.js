@@ -15,22 +15,24 @@ const actions = {
     const { username, password } = credentials;
     try {
       const authResponse = await networkService.login({ username, password });
-      if (window) {
+      if (typeof window !== 'undefined') {
         window.localStorage.setItem('token', authResponse.token);
         window.localStorage.setItem('tokenExpiration', authResponse.expiration);
       }
       dispatch('setIsAuthenticatedAction', true);
       dispatch('setProfileAction');
     } catch (error) {
-      console.error(`ERROR HERE:: ${error.message}`);
-      if (window) {
+      console.error(
+        `ERROR HERE at vuex-state.actions.loginAction:: ${error.message}`
+      );
+      if (typeof window !== 'undefined') {
         window.alert("Couldn't login");
       }
     }
   },
 
   logoutAction({ commit, dispatch }) {
-    if (window) {
+    if (typeof window !== 'undefined') {
       window.localStorage.removeItem('token');
       window.localStorage.removeItem('tokenExpiration');
     }

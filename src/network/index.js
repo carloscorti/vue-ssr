@@ -3,7 +3,7 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://api.fullstackweekly.com/';
 
 axios.interceptors.request.use(config => {
-  if (window && window.localStorage.getItem('token')) {
+  if (typeof window !== 'undefined' && window.localStorage.getItem('token')) {
     config.headers = {
       Authorization: `Bearer ${window.localStorage.getItem('token')}`
     };
@@ -19,7 +19,7 @@ const getPosts = async categoryId => {
     );
     return resp.data;
   } catch (error) {
-    console.error(`ERROR HERE:: ${error.message}`);
+    console.error(`ERROR HERE at network.getPosts:: ${error.message}`);
     return [
       {
         id: 0,

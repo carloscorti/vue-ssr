@@ -54,7 +54,7 @@ export default {
 
   async created() {
     await this.fetchPosts(this.id);
-    console.log(this.profile);
+    // console.log(this.profile);
   },
 
   methods: {

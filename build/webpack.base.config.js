@@ -100,13 +100,13 @@ module.exports = (env, argv) => {
             chunks: 'initial',
             name: 'vendor',
             enforce: true
+          },
+          'css-vendor': {
+            test: /styles[\\/]index.(s)?css$/,
+            chunks: 'initial',
+            name: 'css-vendor',
+            enforce: true
           }
-          // 'css-vendor': {
-          //   test: /style[\\/]index.(s)?css$/,
-          //   chunks: 'initial',
-          //   name: 'css-vendor',
-          //   enforce: true
-          // }
         }
       },
       minimizer: [new OptimizeCssAssetsWebpackPlugin(), new TerserPlugin()]

@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <app-header></app-header>
 
     <router-view></router-view>
@@ -24,7 +24,7 @@ export default {
     ...mapActions(['setIsAuthenticatedAction', 'setProfileAction'])
   },
   created() {
-    if (window) {
+    if (typeof window !== 'undefined') {
       let authenticationValue = false;
       const expiration = window.localStorage.getItem('tokenExpiration');
       const timeNow = new Date().getTime() / 1000;

@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 
+const { createBundleRenderer } = require('vue-server-renderer');
+
 const config = {
   port: process.env.PORT || 3000
 };
@@ -13,6 +15,11 @@ const indexHTML = fs.readFileSync(
   'utf-8'
 );
 
+const appBundle = fs.readFileSync(
+  path.join(__dirname, 'ssr', 'App.js'),
+  'utf-8'
+);
+
 app.use(express.static('public'));
 
 if (process.env.NODE_ENV === 'development') {
@@ -21,9 +28,19 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.get('/*', (req, res) => {
-  // res.send('index.html');
-  res.write(indexHTML);
-  res.end();
+  const renderer = createBundleRenderer(appBundle);
+
+  renderer.renderToString({ url: req.url }, (err, html) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send('server error');
+    }
+
+    const ssrIndexHTML = indexHTML.replace('{{APP}}', html);
+
+    res.write(ssrIndexHTML);
+    res.end();
+  });
 });
 
 app.use((req, res, next) => {
