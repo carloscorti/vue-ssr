@@ -44,13 +44,25 @@ const routes = [
   }
 ];
 
-const router = new VueRouter({
-  mode: 'history',
-  // linkExactActiveClass: 'is-active',
-  linkActiveClass: 'is-active',
-  scrollBehavior: (to, from, savedPosition) => ({ y: 0 }),
-  // base: process.env.BASE_URL,
-  routes
-});
+// const router = new VueRouter({
+//   mode: 'history',
+//   // linkExactActiveClass: 'is-active',
+//   linkActiveClass: 'is-active',
+//   scrollBehavior: (to, from, savedPosition) => ({ y: 0 }),
+//   // base: process.env.BASE_URL,
+//   routes
+// });
 
-export default router;
+// export default router;
+
+const createRouter = () =>
+  new VueRouter({
+    mode: 'history',
+    // linkExactActiveClass: 'is-active',
+    linkActiveClass: 'is-active',
+    scrollBehavior: (to, from, savedPosition) => ({ y: 0 }),
+    // base: process.env.BASE_URL,
+    routes
+  });
+
+export { createRouter };

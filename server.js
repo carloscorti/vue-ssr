@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const serialize = require('serialize-javascript');
 
 const { createBundleRenderer } = require('vue-server-renderer');
 
@@ -30,13 +31,24 @@ if (process.env.NODE_ENV === 'development') {
 app.get('/*', (req, res) => {
   const renderer = createBundleRenderer(appBundle);
 
-  renderer.renderToString({ url: req.url }, (err, html) => {
+  const context = { url: req.url };
+
+  renderer.renderToString(context, (err, html) => {
     if (err) {
       console.log(err);
       return res.status(500).send('server error');
     }
 
-    const ssrIndexHTML = indexHTML.replace('{{APP}}', html);
+    let ssrIndexHTML = indexHTML.replace('{{APP}}', html);
+    ssrIndexHTML = ssrIndexHTML.replace(
+      '{{STATE}}',
+      `<script type="text/javascript">window.__INITIAL_STATE__=${serialize(
+        context.state,
+        {
+          isJSON: true
+        }
+      )}</script>`
+    );
 
     res.write(ssrIndexHTML);
     res.end();

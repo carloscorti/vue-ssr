@@ -23,7 +23,7 @@ const getPosts = async categoryId => {
     return [
       {
         id: 0,
-        title: { rendered: 'Opps, too busy rigth now' },
+        title: { rendered: 'Opps, too busy rigth now from getPosts' },
         content: { rendered: 'Please try leater' },
         rest_api_enabler: { Link: '/#' }
       }

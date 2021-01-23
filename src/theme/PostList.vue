@@ -36,6 +36,13 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'PostList',
+  // async asyncData(store, route) {
+  //   // console.log(route.params.id);
+  //   return await store.dispatch('postsModule/fetchPosts', route.params.id);
+  // },
+  async serverPrefetch() {
+    await this.fetchPosts(this.id);
+  },
   components: {
     'post-card': PostCard
   },
@@ -53,6 +60,7 @@ export default {
   },
 
   async created() {
+    // console.log('from postList created');
     await this.fetchPosts(this.id);
     // console.log(this.profile);
   },

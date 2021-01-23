@@ -22,7 +22,6 @@ const actions = {
         break;
       default:
         postsUpdate = errorPost;
-        return;
     }
     commit(types.GET_POSTS, postsUpdate);
   }

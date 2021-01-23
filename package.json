@@ -18,6 +18,7 @@
     "axios": "0.21.1",
     "bulma": "0.9.1",
     "express": "4.17.1",
+    "serialize-javascript": "5.0.1",
     "vue": "2.6.12",
     "vue-router": "3.4.9",
     "vue-server-renderer": "2.6.12",
