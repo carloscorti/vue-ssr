@@ -1,10 +1,16 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+
 const webpack = require('webpack');
+
+const VueSSRServerPlugin = require('vue-server-renderer/server-plugin');
+
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   target: 'node',
+  // externals: nodeExternals({ allowlist: /\.css$/ }),
   externals: nodeExternals(),
   entry: {
     App: path.resolve(__dirname, '../', 'src', 'server-entry.js')
@@ -12,7 +18,6 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, '../', 'ssr'),
-    filename: '[name].js',
     libraryTarget: 'commonjs2'
   },
 
@@ -44,9 +49,8 @@ module.exports = {
   },
 
   plugins: [
+    new VueSSRServerPlugin(),
     new VueLoaderPlugin(),
-    new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1
-    })
+    new CleanWebpackPlugin()
   ]
 };

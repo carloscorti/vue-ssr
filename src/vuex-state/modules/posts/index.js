@@ -6,9 +6,9 @@ import actions from './actions';
 
 Vue.use(Vuex);
 
-const state = {
+const state = () => ({
   posts: []
-};
+});
 
 const getters = {
   posts: state => state.posts

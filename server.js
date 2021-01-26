@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const serialize = require('serialize-javascript');
 
 const { createBundleRenderer } = require('vue-server-renderer');
 
@@ -11,17 +10,17 @@ const config = {
 
 const app = express();
 
-const indexHTML = fs.readFileSync(
-  path.join(__dirname, 'public', 'index.html'),
+const template = fs.readFileSync(
+  path.join(__dirname, 'template', 'index.html'),
   'utf-8'
 );
 
-const appBundle = fs.readFileSync(
-  path.join(__dirname, 'ssr', 'App.js'),
-  'utf-8'
-);
+const appBundle = require('./ssr/vue-ssr-server-bundle.json');
+
+const clientManifest = require('./public/vue-ssr-client-manifest.json');
 
 app.use(express.static('public'));
+app.use('/icon', express.static(path.join(__dirname, 'images')));
 
 if (process.env.NODE_ENV === 'development') {
   // require('./build/dev-server')(app);
@@ -29,29 +28,20 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.get('/*', (req, res) => {
-  const renderer = createBundleRenderer(appBundle);
+  const renderer = createBundleRenderer(appBundle, {
+    runInNewContext: false,
+    template,
+    clientManifest
+  });
 
   const context = { url: req.url };
 
   renderer.renderToString(context, (err, html) => {
     if (err) {
-      console.log(err);
+      console.error(err);
       return res.status(500).send('server error');
     }
-
-    let ssrIndexHTML = indexHTML.replace('{{APP}}', html);
-    ssrIndexHTML = ssrIndexHTML.replace(
-      '{{STATE}}',
-      `<script type="text/javascript">window.__INITIAL_STATE__=${serialize(
-        context.state,
-        {
-          isJSON: true
-        }
-      )}</script>`
-    );
-
-    res.write(ssrIndexHTML);
-    res.end();
+    res.send(html);
   });
 });
 

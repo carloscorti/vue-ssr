@@ -25,8 +25,6 @@
 //         }
 //         resolve(app);
 //       });
-
-//       // the Promise should resolve to the app instance so it can be rendered
 //     }, reject);
 //   });
 //   // return app;
@@ -34,7 +32,7 @@
 
 import { createApp } from './app';
 
-export default context => {
+export default (context) => {
   const { app, router, store } = createApp();
   // console.log(context);
   return new Promise((resolve, reject) => {
@@ -43,7 +41,7 @@ export default context => {
     router.onReady(() => {
       context.rendered = () => {
         context.state = store.state;
-        console.log(context.state);
+        // console.log(context.state);
       };
 
       resolve(app);

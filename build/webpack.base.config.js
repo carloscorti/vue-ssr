@@ -4,7 +4,9 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
 const MiniCssExtraxtPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
+const webpack = require('webpack');
 
 // let executionMode = 'production';
 // let sourceMapStatus = 'source-map';
@@ -84,12 +86,9 @@ module.exports = (env, argv) => {
         filename: 'assets/css/[name].[contenthash].css'
       }),
 
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, '../', 'template', 'index.html'),
-        filename: path.resolve(__dirname, '../', 'public', 'index.html'),
-        inject: true,
-        favicon: path.resolve(__dirname, '../', 'template', 'favicon.png')
-      })
+      // This plugins generates `vue-ssr-client-manifest.json` in the
+      // output directory.
+      new VueSSRClientPlugin()
     ],
 
     optimization: {
