@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --watchAll",
+    "verify-tests": "jest --coverage",
     "prestart": "webpack --config ./build/webpack.base.config.js --mode=production",
     "start": "node server.js",
     "dev-webpack": "webpack --config ./build/webpack.base.config.js --watch --mode=development",
@@ -28,7 +29,10 @@
     "@babel/plugin-transform-runtime": "7.12.10",
     "@babel/preset-env": "7.12.11",
     "@babel/runtime": "7.12.5",
+    "@vue/test-utils": "1.1.2",
+    "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "10.1.0",
+    "babel-jest": "26.6.3",
     "babel-loader": "8.2.2",
     "clean-webpack-plugin": "3.0.0",
     "css-loader": "5.0.1",
@@ -41,12 +45,14 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "5.0.0",
     "ignore-loader": "0.1.2",
+    "jest": "26.6.3",
     "mini-css-extract-plugin": "1.3.3",
     "node-sass": "5.0.0",
     "nodemon": "2.0.7",
     "optimize-css-assets-webpack-plugin": "5.0.4",
     "sass-loader": "10.1.0",
     "terser-webpack-plugin": "5.0.3",
+    "vue-jest": "3.0.7",
     "vue-loader": "15.9.6",
     "vue-template-compiler": "2.6.12",
     "webpack": "4.44.2",
@@ -54,5 +60,19 @@
     "webpack-dev-middleware": "4.0.2",
     "webpack-hot-middleware": "2.25.0",
     "webpack-node-externals": "2.5.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(vue)$": "vue-jest",
+      ".*\\.(js)$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "^@_/(.*)$": "<rootDir>/src/$1"
+    }
   }
 }
