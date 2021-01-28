@@ -1,5 +1,5 @@
-import { mount } from '@vue/test-utils';
-import Header from '../PostCard.vue';
+import { mount, shallowMount } from '@vue/test-utils';
+import PostCard from '../PostCard.vue';
 
 const testPost = {
   id: 0,
@@ -8,9 +8,18 @@ const testPost = {
   rest_api_enabler: { Link: '/#' }
 };
 
-describe('Header', () => {
+describe('PostCard', () => {
+  it('renders correctly', () => {
+    const wrapper = shallowMount(PostCard, {
+      propsData: {
+        post: testPost
+      }
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it('loads post prop correctly', () => {
-    const wrapper = mount(Header, {
+    const wrapper = mount(PostCard, {
       propsData: {
         post: testPost
       }
