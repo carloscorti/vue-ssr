@@ -1,9 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PostCard renders correctly 1`] = `
-VueWrapper {
-  "_emitted": Object {},
-  "_emittedByOrder": Array [],
-  "isFunctionalComponent": undefined,
-}
+<div class="card">
+  <div class="card-content"> </div>
+  <footer class="card-footer"><a href="/#" target="_blank" class="card-footer-item">Read More</a></footer>
+</div>
 `;
