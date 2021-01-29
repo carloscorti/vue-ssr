@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders correctly with isAuthenticated false 1`] = `
+<nav class="navbar has-shadow">
+  <div class="container">
+    <router-link-stub to="[object Object]" tag="a" ariacurrentvalue="page" event="click"><img src="http://bit.ly/vue-img" alt="Vue SPA"></router-link-stub>
+    <router-link-stub to="/category/front-end" tag="a" ariacurrentvalue="page" event="click" class="navbar-item is-tab">Front-End</router-link-stub>
+    <router-link-stub to="[object Object]" tag="a" ariacurrentvalue="page" event="click" class="navbar-item is-tab">Movile</router-link-stub>
+    <router-link-stub to="/login" tag="a" ariacurrentvalue="page" event="click" class="navbar-item is-tab"><span>Login</span></router-link-stub>
+  </div>
+</nav>
+`;
