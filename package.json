@@ -2,10 +2,15 @@
   "name": "vue-ssr",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": "true",
+  "engines": {
+    "node": "12.18.4",
+    "npm": "6.14.6"
+  },
+  "main": "server.js",
   "scripts": {
-    "test": "jest --watchAll",
-    "verify-tests": "jest --coverage",
+    "test-watch": "jest --watchAll",
+    "test": "jest --coverage",
     "prestart": "webpack --config ./build/webpack.base.config.js --mode=production",
     "start": "node server.js",
     "dev-webpack": "webpack --config ./build/webpack.base.config.js --watch --mode=development",
@@ -67,6 +72,13 @@
       "js",
       "json",
       "vue"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{js,vue}",
+      "!**/node_modules/**",
+      "!**/__tests__/**",
+      "!**/public/**",
+      "!**/ssr/**"
     ],
     "transform": {
       ".*\\.(vue)$": "vue-jest",
